@@ -24,9 +24,6 @@ export default function Customer({ navigation }) {
     })
   }
 
-  const log = () => {
-    navigation.navigate("Menu");
-  }
 
   const sign = () => {
     navigation.navigate("CustomerSignup");

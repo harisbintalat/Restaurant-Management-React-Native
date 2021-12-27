@@ -1,14 +1,47 @@
-import * as React from 'react';
+import React, {useState} from 'react';
 import { Text, View, StyleSheet, Image ,TextInput,TouchableOpacity , ImageBackground} from 'react-native';
+import firebase from 'firebase/compat/app';
+import "firebase/compat/auth";
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Constants from 'expo-constants';
 import Restaurant from './Restaurant';
+import AddMenu from './AddMenu'
 
 export default function RestaurantSignup({navigation}) {
-const log=()=>{
+  const[values,setValues] = useState({
+    resname:"",
+    email:"",
+    password:"",
+    location: ""
+  });
+
+  function handleChange(text,eventName) {
+    //console.log(values)
+    setValues(prev=> {
+      return {
+        ...prev,
+        [eventName] : text
+      }
+    })
+  }
+ 
+  const log =()=>{
     navigation.navigate("Restaurant");
   }
+
+  function register() {
+    const{resname,email,password,location} = values;
+
+    firebase.auth().createUserWithEmailAndPassword(email, password)
+  .then((userCredential) => {
+      navigation.replace("AddMenu")
+  })
+  .catch((error) => {
+    alert(error.message);
+  });
+  }
+
 return(
 
     <View styles={styles.container}>
@@ -20,12 +53,14 @@ return(
             Create Account
           </Text>
 
-      <Text style={styles.label1}> Restaurant Name </Text>
-       <TextInput style={styles.input}   placeholder="Enter name"  />
-      <Text style={styles.label1}>Email </Text>
-       <TextInput style={styles.input}   placeholder="Enter email"  />
+        <Text style={styles.label1}> Restaurant Name </Text>
+       <TextInput style={styles.input}   placeholder="Enter name"  onChangeText={text => handleChange(text, "resname")}  />
+       <Text style={styles.label1}>Email </Text>
+       <TextInput style={styles.input}   placeholder="Enter email"  onChangeText={text => handleChange(text, "email")}  />
        <Text style={styles.label1}>Password </Text>
-       <TextInput style={styles.input}   placeholder="Enter password"  secureTextEntry />
+       <TextInput style={styles.input}   placeholder="Enter password"  secureTextEntry={true}  onChangeText={text => handleChange(text, "password")} />
+       <Text style={styles.label1}>Restaurant location </Text>
+       <TextInput style={styles.input}   placeholder="Enter location"  onChangeText={text => handleChange(text, "location")} />
 
 
       <TouchableOpacity style={{ backgroundColor: 'olivedrab',
@@ -37,9 +72,9 @@ return(
           marginLeft:100,
           color:'white',
           textAlign:"center"
-          }} onPress={log} >
+          }}  onPress={()=>register()}  >
           <Text style={{color:'white' , fontSize:25 ,textAlign:"center" ,justifyContent:"center" }}>
-                SignUp
+                Sign up
           </Text>
         </TouchableOpacity>
   </View>
