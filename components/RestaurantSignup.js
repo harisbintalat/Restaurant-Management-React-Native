@@ -32,14 +32,20 @@ export default function RestaurantSignup({navigation}) {
 
   function register() {
     const{resname,email,password,location} = values;
-
     firebase.auth().createUserWithEmailAndPassword(email, password)
-  .then((userCredential) => {
-      navigation.replace("AddMenu")
-  })
-  .catch((error) => {
-    alert(error.message);
-  });
+    .then((user) => { 
+      firebase.firestore().collection('Restaurants').doc(user.user.uid).set({ 
+        uid: user.user.uid,
+        email: email,
+        password: password,
+        location:location
+      });
+      
+      navigation.replace("AddMenu",{id: user.user.uid})
+    })
+    .catch((error) => {
+      alert(error.message);
+    });
   }
 
 return(

@@ -3,7 +3,6 @@ import { Text, View, StyleSheet ,Image } from 'react-native';
 import Constants from 'expo-constants';
 import firebase from 'firebase/compat/app';
 import "firebase/compat/auth"; 
-
 import Home from './components/Home';
 import Restaurant from './components/Restaurant';
 import Customer from './components/Customer';
@@ -11,7 +10,6 @@ import Menu from './components/Menu';
 import CustomerSignup from './components/CustomerSignup';
 import AddMenu from './components/AddMenu';
 import RestaurantSignup from './components/RestaurantSignup';
-
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 // You can import from local files
@@ -57,7 +55,7 @@ export default function App() {
         <Stack.Screen name="Home" component={Home}/>
         <Stack.Screen name="Restaurant" component={Restaurant}/>
         <Stack.Screen name="Customer" component={Customer}/>
-       <Stack.Screen name ="Menu" component={Menu}/>
+       {/* <Stack.Screen name ="Menu" component={Menu}/> */}
        <Stack.Screen name ="CustomerSignup" component={CustomerSignup}/>
        <Stack.Screen name ="AddMenu" component={AddMenu}/>
        <Stack.Screen name ="RestaurantSignup" component={RestaurantSignup}/>

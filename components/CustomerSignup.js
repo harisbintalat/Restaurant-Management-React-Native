@@ -3,12 +3,13 @@ import { Text, View, StyleSheet, Image, TextInput, TouchableOpacity, ImageBackgr
 import firebase from 'firebase/compat/app';
 import "firebase/compat/auth";
 import 'firebase/compat/firestore';
+// import { getFirestore } from "firebase/firestore";
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Constants from 'expo-constants';
 import Customer from './Customer'
 export default function CustomerSignup({ navigation }) {
-import {setDoc,doc,} from "@react-native-firebase/firestore"
+
   const [values, setValues] = useState({
     name: "",
     phone: "",
@@ -36,7 +37,7 @@ import {setDoc,doc,} from "@react-native-firebase/firestore"
 
     firebase.auth().createUserWithEmailAndPassword(email, password)
       .then((user) => { 
-        firebase.firestore().collection('Users').doc(user.user.uid).set({ 
+        firebase.firestore().collection('Customers').doc(user.user.uid).set({ 
           uid: user.user.uid,
           email: email,
           password: password,
@@ -45,7 +46,7 @@ import {setDoc,doc,} from "@react-native-firebase/firestore"
           address: address
         });
         
-        navigation.replace("Menu")
+        navigation.replace("AddMenu",{id: user.user.uid})
       })
       .catch((error) => {
         alert(error.message);
