@@ -34,7 +34,7 @@ export default function Customer({ navigation }) {
 
     firebase.auth().signInWithEmailAndPassword(email, password)
       .then((userCredential) => {
-        navigation.replace("Menu")
+        navigation.replace("SearchScreen")
       })
       .catch((error) => {
         alert(error.message);

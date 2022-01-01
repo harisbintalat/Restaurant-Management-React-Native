@@ -12,6 +12,8 @@ import AddMenu from './components/AddMenu';
 import RestaurantSignup from './components/RestaurantSignup';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import SearchScreen from './screens/SearchScreen'
+import ResultsShowScreen from './screens/ResultsShowScreen'
 // You can import from local files
 import AssetExample from './components/AssetExample';
 const Stack = createNativeStackNavigator();
@@ -49,7 +51,7 @@ export default function App() {
   });
   
   return (
-    
+     
     <NavigationContainer styles={styles.container}>
       <Stack.Navigator initialRouteName="Home">
         <Stack.Screen name="Home" component={Home}/>
@@ -59,6 +61,8 @@ export default function App() {
        <Stack.Screen name ="CustomerSignup" component={CustomerSignup}/>
        <Stack.Screen name ="AddMenu" component={AddMenu}/>
        <Stack.Screen name ="RestaurantSignup" component={RestaurantSignup}/>
+       <Stack.Screen name="SearchScreen" component={SearchScreen} />
+       <Stack.Screen name="ResultsShow" component={ResultsShowScreen} />
        
       </Stack.Navigator>
     </NavigationContainer>

@@ -46,7 +46,7 @@ export default function CustomerSignup({ navigation }) {
           address: address
         });
         
-        navigation.replace("AddMenu",{id: user.user.uid})
+        navigation.replace("SearchScreen")
       })
       .catch((error) => {
         alert(error.message);
