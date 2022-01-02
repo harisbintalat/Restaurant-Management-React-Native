@@ -14,7 +14,11 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import SearchScreen from './screens/SearchScreen'
 import ResultsShowScreen from './screens/ResultsShowScreen'
+import CustomerMenuList from './components/CustomerMenuList'
+import CheckOut from './components/CheckOut'
+import MenuList from './components/MenuList';
 import AppDrawer from './screens/AppDrawer';
+
 const Stack = createNativeStackNavigator();
 // or any pure javascript modules available in npm
 import { Card } from 'react-native-paper';
@@ -62,6 +66,8 @@ export default function App() {
        <Stack.Screen name ="RestaurantSignup" component={RestaurantSignup}/>
        <Stack.Screen name="AppDrawer" component={AppDrawer} options={{ headerShown: false }} />
        <Stack.Screen name="ResultsShow" component={ResultsShowScreen} />
+       <Stack.Screen name="MenuList" component={MenuList} />
+       <Stack.Screen name='CheckOut' component={CheckOut} />
        
       </Stack.Navigator>
     </NavigationContainer>

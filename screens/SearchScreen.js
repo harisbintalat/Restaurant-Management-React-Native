@@ -34,10 +34,10 @@ function SearchScreen({ navigation, route }) {
         <ResultsList
             results={filterResultsByPrice("$")}
             navigation={navigation}
-            title="Cost Effective"
+            title="Most Popular"
           />
-          <ResultsList results={filterResultsByPrice("$$")} navigation={navigation} title="Bit Pricier" />
-          <ResultsList results={filterResultsByPrice("$$")} navigation={navigation} title="Big Spender" />
+          <ResultsList results={filterResultsByPrice("$$")} navigation={navigation} title="Best Market" />
+          <ResultsList results={filterResultsByPrice("$$")} navigation={navigation} title="Highly Rated" />
         </ScrollView>
       </ImageBackground>
     </View>

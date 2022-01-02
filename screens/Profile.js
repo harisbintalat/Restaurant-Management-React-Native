@@ -28,7 +28,7 @@ const Profile = ({ route, navigation }) => {
     }
 
     return (
-        <View style={{backgroundColor:"#F5F5F5"}}>
+        <View style={{backgroundColor:"#F8F8FF"}}>
             <View style={styles.container}>
                 <Text style={styles.header}>Profile Details</Text>
                 <View style={{ borderWidth: 2, borderRadius: 20 }}>
@@ -40,7 +40,7 @@ const Profile = ({ route, navigation }) => {
                     <View style={styles.data}>
                         <FontAwesome name="envelope" size={20} color="black" />
                         <Text style={styles.left}>Email</Text>
-                        <Text style={styles.right}>abc@test.com</Text>
+                        <Text style={styles.right}>{JSON.stringify(email)}</Text>
                     </View>
                     <View style={styles.data}>
                         <FontAwesome name="phone" size={20} color="black" />

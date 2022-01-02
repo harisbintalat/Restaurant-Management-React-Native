@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Text, View, StyleSheet, Image, Dimensions,StatusBar,TextInput, TouchableOpacity, ImageBackground, Button } from 'react-native';
+import { Text, Alert,View, StyleSheet, Image, Dimensions,StatusBar,TextInput, TouchableOpacity,
+   ImageBackground, Button } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { NavigationContainer } from '@react-navigation/native';
 import firebase from 'firebase/compat/app';
 import "firebase/compat/auth";
@@ -7,74 +9,62 @@ import 'firebase/compat/firestore';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Constants from 'expo-constants';
 import * as ImagePicker from 'expo-image-picker';
-
+import MenuList from './MenuList';
 export default function AddMenu({ navigation }) {
   // const { userid} = route.params.userid;
   // console.log(userid)
   const [image, setImage] = useState(null);
    const [itemname , setitemname] = useState(null);
    const [itemprice , setitemprice] = useState(null);
-   
-  const pickImage = async () => {
-    let result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.All,
-    });
+   const [cars, setCars] = useState([]);
+   const [menu,setmenu] = useState([]);
 
-    console.log(result);
-
-    if (!result.cancelled) {
-      setImage(result.uri);
+   const clearAsyncStorage = async() => {
+    navigation.navigate("MenuList")
+}
+React.useEffect(() => {
+    
+  async function getDataFromStorage() {
+    try {
+      let value = await AsyncStorage.getItem('menu');
+      if (value !== null) {
+        value = await JSON.parse(value);
+        setmenu(value);
+      }
+    } catch (error) {
+      alert(error);
     }
-
   }
-  const addItems = () => {
-    firebase.firestore().collection('Customers').doc(user.user.uid).set({ 
-      uid: user.user.uid,
-      itemname:"",
-      itemprice:""
-    });
+  getDataFromStorage();
+}, []);
+
+const addCar = async () => {
+  try {
+    let previousArray = [];
+    const value = await AsyncStorage.getItem('menu');
+    if (value !== null) {
+      previousArray = JSON.parse(value);
+    }
+    const newArray = [
+      ...previousArray,
+      {
+        image:image,
+        name:itemname,
+        price:itemprice,
+        key: Math.random(),
+      },
+    ];
+    await AsyncStorage.setItem('menu', JSON.stringify(newArray));
+    navigation.navigate('MenuList', { reFetch: true });
+  } catch (error) {
+    alert(error);
   }
+  setImage("");
+  setitemprice("");
+  setitemname("");
+};
 
-  // setitemstorage = async (key,value) => {
-  //   try {
-  //     await AsyncStorage.setItem(
-  //       key,
-  //       JSON.stringify(value)
-  //     );
-  //   } catch (error) {
-  //     console.log("read data error")
-  //   }
-  // };
 
-  // getitemstorage = async (key) => {
-  //   try {
-  //     const value = await AsyncStorage.getItem(key);
-  //     if (value !== null) {
-  //       // We have data!!
-  //       return(value)
-        
-  //     }
-  //   } catch (error) {
-  //     console.log("read data error")
-  //   }
-  // };
-
-  // savestorage=()=>{
-  //   var item = {
-  //     n: itemname,
-  //     p: itemprice,
-      
-      
-  //   };
-  //   this.setitemstorage("i",{item})
-  // }
-
-  // readstorage=()=>{
-  //   this.getitemstorage("i").then(result=>{
-  //     let jsonObject= JSON.parse(result)
-  //     alert("name:" +jsonObject.item.n + "price: "+ jsonObject.item.p)
-  //   })
-  // }
 return(
 
   <View style={styles.container}>
@@ -85,42 +75,23 @@ return(
      <Text style={styles.label1}>Item Name </Text>
      <TextInput style={styles.input}   placeholder="Enter name"  value={itemname} onChangeText={setitemname}/>
      <Text style={styles.label1}>Item Price </Text>
-     <TextInput style={styles.input}   placeholder="Enter nPrice"  keyboardType="numeric" value={itemprice} onChangeText={setitemprice} />
-
-     <View style={{flexDirection:'row'}}>
-
-       <Text style={styles.labal3}>Item Picture </Text>
-       <TouchableOpacity style={{ backgroundColor: 'olivedrab',
-          borderRadius: 30,
-          height:40,
-          width:70,
-          borderWidth: 1,
-          marginTop:20,
-          marginLeft:70,
-          color:'white',
-          textAlign:"center"
-          }} onPress={pickImage} >
-           <Image style={styles.logo} source={require('../assets/download.png')} />
-        </TouchableOpacity>
-        
-      </View>
-      
-     
-
-         {image && <Image source={{ uri: image }} style={{ width: 100, height: 100 , marginLeft:20 }} />}
-         
-     
-
+     <TextInput style={styles.input}   placeholder="Enter Price"  keyboardType="numeric" value={itemprice} onChangeText={setitemprice} />
+     <Text style={styles.label1}>Item Picture URL </Text>
+     <TextInput style={styles.input}   placeholder="Type Photo URL"  value={image} onChangeText={setImage} />
        <TouchableOpacity style={{ backgroundColor: 'olivedrab',
           borderRadius: 30,
           height:50,
-          width:120,
+          width:130,
           borderWidth: 1,
           marginTop:20,
-          marginLeft:30,
+          marginLeft:120,
           color:'white',
-          textAlign:"center"
-          }} onPress={savestorage} >
+          textAlign:"center",
+          justifyContent:"center"
+          }}onPress={()=>{
+            addCar();
+            alert('You Added a new Item!!');
+          }} >
           <Text style={{color:'white' , fontSize:25 ,textAlign:"center" ,justifyContent:"center" }}>
                 Add Item
           </Text>
@@ -128,18 +99,18 @@ return(
         <TouchableOpacity style={{ backgroundColor: 'olivedrab',
           borderRadius: 30,
           height:50,
-          width:120,
+          width:130,
           borderWidth: 1,
           marginTop:20,
-          marginLeft:30,
+          marginLeft:120,
           color:'white',
-          textAlign:"center"
-          }} onPress={readstorage} >
+          textAlign:"center",
+          justifyContent:"center"
+          }} onPress={clearAsyncStorage} >
           <Text style={{color:'white' , fontSize:25 ,textAlign:"center" ,justifyContent:"center" }}>
-                show Item
+                View Menu
           </Text>
         </TouchableOpacity>
-
         </ImageBackground>
 
   </View>

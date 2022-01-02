@@ -7,6 +7,7 @@ import SearchScreen from "./SearchScreen";
 import firebase from 'firebase/compat/app';
 import "firebase/compat/auth";
 import 'firebase/compat/firestore';
+import CustomerMenuList from "../components/CustomerMenuList";
 
 const Drawer = createDrawerNavigator();
 
@@ -59,8 +60,8 @@ export default function AppDrawer({ route }) {
                 }}
             />
             <Drawer.Screen
-                name="Menu"
-                component={Profile}
+                name="Menu" 
+                component={CustomerMenuList}
                 options={{
                     drawerLabel: 'Menu',
                     drawerIcon: () => <MaterialIcons name="menu" size={20} color="black" />,
