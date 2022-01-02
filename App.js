@@ -14,8 +14,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import SearchScreen from './screens/SearchScreen'
 import ResultsShowScreen from './screens/ResultsShowScreen'
-// You can import from local files
-import AssetExample from './components/AssetExample';
+import AppDrawer from './screens/AppDrawer';
 const Stack = createNativeStackNavigator();
 // or any pure javascript modules available in npm
 import { Card } from 'react-native-paper';
@@ -61,7 +60,7 @@ export default function App() {
        <Stack.Screen name ="CustomerSignup" component={CustomerSignup}/>
        <Stack.Screen name ="AddMenu" component={AddMenu}/>
        <Stack.Screen name ="RestaurantSignup" component={RestaurantSignup}/>
-       <Stack.Screen name="SearchScreen" component={SearchScreen} />
+       <Stack.Screen name="AppDrawer" component={AppDrawer} options={{ headerShown: false }} />
        <Stack.Screen name="ResultsShow" component={ResultsShowScreen} />
        
       </Stack.Navigator>
@@ -72,11 +71,7 @@ export default function App() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: 'center',
-    paddingTop: Constants.statusBarHeight,
-    backgroundColor: 'white',
-    padding: 8,
+      
   },
   paragraph: {
     margin: 24,

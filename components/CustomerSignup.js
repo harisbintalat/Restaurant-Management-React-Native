@@ -37,7 +37,7 @@ export default function CustomerSignup({ navigation }) {
 
     firebase.auth().createUserWithEmailAndPassword(email, password)
       .then((user) => { 
-        firebase.firestore().collection('Customers').doc(user.user.uid).set({ 
+        firebase.firestore().collection('Customers').doc(email).set({ 
           uid: user.user.uid,
           email: email,
           password: password,
@@ -46,7 +46,9 @@ export default function CustomerSignup({ navigation }) {
           address: address
         });
         
-        navigation.replace("SearchScreen")
+        navigation.replace("AppDrawer",{
+          email:email
+        })
       })
       .catch((error) => {
         alert(error.message);

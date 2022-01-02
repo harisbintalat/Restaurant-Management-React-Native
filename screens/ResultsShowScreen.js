@@ -20,7 +20,11 @@ const ResultsShowScreen = ({route, navigation }) => {
 
   return (
     <View>
-      <Text>{result.name}</Text>
+      <Text style={{fontWeight:'bold'}}>{result.name}</Text>
+      <Text style={{fontWeight:'bold'}}>{result.phone}</Text>
+      <Text style={{fontWeight:'bold'}}>{result.rating}</Text>
+      <Text style={{fontWeight:'bold'}}>{result.review_count}</Text>
+      {/* <Text style={{fontWeight:'bold'}}>{result.country}</Text> */}
       <FlatList
         data={result.photos}
         keyExtractor={(photo) => photo}

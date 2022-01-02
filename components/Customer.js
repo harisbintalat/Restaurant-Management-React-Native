@@ -7,6 +7,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Constants from 'expo-constants';
 import Menu from './Menu';
 import CustomerSignup from './CustomerSignup'
+
 export default function Customer({ navigation }) {
 
   const [values, setValues] = useState({
@@ -34,7 +35,9 @@ export default function Customer({ navigation }) {
 
     firebase.auth().signInWithEmailAndPassword(email, password)
       .then((userCredential) => {
-        navigation.replace("SearchScreen")
+        navigation.replace("AppDrawer",{
+          email:email
+        })
       })
       .catch((error) => {
         alert(error.message);
