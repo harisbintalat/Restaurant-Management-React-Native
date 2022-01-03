@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Text, Alert,View, StyleSheet, Image, Dimensions,StatusBar,TextInput,ScrollView, TouchableOpacity,
    ImageBackground, Button,  } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-   import AsyncStorage from '@react-native-async-storage/async-storage';
 export default function CheckOut ({navigation , route}){
     const [image, setImage] = useState(null);
     const [itemname , setitemname] = useState(null);
@@ -26,23 +26,25 @@ export default function CheckOut ({navigation , route}){
             alert(error);
           }
     }
+    async function getDataFromStorage() {
+      try {
+        let value = await AsyncStorage.getItem('order');
+        if (value !== null) {
+          value = await JSON.parse(value);
+          setorder(value);
+        }
+      } catch (error) {
+        alert(error);
+      }
+      setReload(false);
+    }
+    if (route.params?.reload || reload) {
+      getDataFromStorage();
+    }
 
-    React.useEffect(() => {
-        async function getDataFromStorage() {
-          try {
-            let value = await AsyncStorage.getItem('order');
-            if (value !== null) {
-              value = await JSON.parse(value);
-              setorder(value);
-            }
-          } catch (error) {
-            alert(error);
-          }
-          setReload(false);
-        }
-        if (route.params?.reload || reload) {
-          getDataFromStorage();
-        }
+    useEffect(() => {
+      getDataFromStorage()
+
       }, [route.params, reload]);
     
       const deleteCar = async (key) => {
@@ -104,18 +106,18 @@ export default function CheckOut ({navigation , route}){
       );
       const emptyScrollView = (
         <View style={{ alignItems: 'center', paddingTop: 20 }}>
-          <Text style={{ fontSize: 20, fontStyle: 'italic', color: 'grey' }}>
-            No item in cart
+          <Text style={{ fontSize: 35, fontStyle: 'italic', color: 'grey' }}>
+            No items in cart :(
           </Text>
         </View>
       );
       return (
         <View style={styles.scrollViewContainer}>
             <ImageBackground source={require('../assets/food6.jpg')} style={{height:'100%' , width:'100%'  }}>
-          <Text style={styles.title}>Order</Text>
+          <Text style={styles.title}>Orders</Text>
           {order.length <= 0 ? emptyScrollView : scrollView}
 
-          <TouchableOpacity style={{ backgroundColor: 'olivedrab',
+          {/* <TouchableOpacity style={{ backgroundColor: 'olivedrab',
          borderRadius: 30,
          height:50,
          width:120,
@@ -129,7 +131,7 @@ export default function CheckOut ({navigation , route}){
           <Text style={{color:'white' , fontSize:23 ,textAlign:"center" ,justifyContent:"center" }}>
                 View Cart
           </Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
         </ImageBackground>
         </View>
         
@@ -142,7 +144,8 @@ export default function CheckOut ({navigation , route}){
             color: 'black',
             textAlign: 'center',
             padding: 15,
-            color:"yellow"
+            color:"yellow",
+            marginTop:70
           },
 
         scrollviewlistItem: {

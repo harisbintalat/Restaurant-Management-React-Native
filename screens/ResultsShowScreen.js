@@ -24,7 +24,7 @@ const ResultsShowScreen = ({route, navigation }) => {
       <View style={styles.container}>
       <Text style={styles.header}>{result.name}</Text>
       <Text style={styles.content}>City: {result.location.city}</Text>
-      <Text style={styles.content}>Address1: {result.location.address1}</Text>
+      <Text style={styles.content}>Address: {result.location.address1}</Text> 
       <Text style={styles.content}>Phone: {result.phone}</Text>
       <Text style={styles.content}>Rating: {result.rating}</Text>
       <Text style={styles.content}>Reviews: {result.review_count}</Text>
@@ -53,13 +53,13 @@ const styles = StyleSheet.create({
   header: {
     fontSize:35,
     fontWeight:'bold',
-    color:'white',
+    color:'yellow',
     marginLeft:20
   },
   headerBottom: {
     fontSize:30,
     fontWeight:'bold',
-    color:'white',
+    color:'yellow',
     marginLeft:20,
     marginTop:40
   },

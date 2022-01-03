@@ -25,35 +25,37 @@ const cs=()=>{
          <Text style={styles.labal}>
             WELCOME TO DIGIDINE  
           </Text>
-          <Text style={{fontSize: 22,fontWeight: 'bold', textAlign: 'center',marginTop:20 ,color:'yellow' , fontStyle:'italic'}}>
+          <Text style={{fontSize: 22,fontWeight: 'bold', textAlign: 'center',marginTop:80 ,color:'yellow' , fontStyle:'italic'}}>
             YOU ARE  
           </Text>
       </View>
-      <View style={{flexDirection:"row" , marginTop:30}}>
-          <TouchableOpacity style={{ backgroundColor: 'olivedrab',
+      <View style={{flexDirection:"row" , marginTop:30, marginLeft:18}}>
+          <TouchableOpacity style={{ backgroundColor: '#CD5C5C',
           borderRadius: 30,
           height:50,
+          paddingTop:8,
           width:160,
           borderWidth: 1,
           marginTop:10,
           marginLeft:10,
           color:'white',
           }} onPress={rs}>
-          <Text style={{color:'white' , fontSize:25 ,textAlign:"center" ,justifyContent:"center" }}>
+          <Text style={{color:'white' , fontSize:20 ,textAlign:"center" ,justifyContent:"center" }}>
                 Restaurant
           </Text>
           </TouchableOpacity>
 
-           <TouchableOpacity style={{ backgroundColor: 'olivedrab',
+           <TouchableOpacity style={{ backgroundColor: '#32CD32',
           borderRadius: 30,
           height:50,
+          paddingTop:8,
           width:160,
           borderWidth: 1,
           marginTop:10,
           marginLeft:10,
           color:'white',
           }}  onPress={cs}>
-          <Text style={{color:'white' , fontSize:25 , textAlign:"center" , justifyContent:"center"}}>
+          <Text style={{color:'white' , fontSize:20 , textAlign:"center" , justifyContent:"center"}}>
                 Customer
           </Text>
           </TouchableOpacity>
@@ -62,9 +64,6 @@ const cs=()=>{
     </View>
   );
 }
-
-
-
 
 
 const styles = StyleSheet.create({
@@ -93,10 +92,11 @@ const styles = StyleSheet.create({
 
   },
   logo: {
-  marginTop:20,
+  marginTop:40,
   
-    height: 228,
-    width: 400,
+    height: 150,
+    width: 150,
+    marginLeft:120
     
   }
 });

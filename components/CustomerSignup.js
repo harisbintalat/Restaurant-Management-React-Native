@@ -3,7 +3,6 @@ import { Text, View, StyleSheet, Image, TextInput, TouchableOpacity, ImageBackgr
 import firebase from 'firebase/compat/app';
 import "firebase/compat/auth";
 import 'firebase/compat/firestore';
-// import { getFirestore } from "firebase/firestore";
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Constants from 'expo-constants';
@@ -36,18 +35,18 @@ export default function CustomerSignup({ navigation }) {
     const { name, phone, address, email, password } = values;
 
     firebase.auth().createUserWithEmailAndPassword(email, password)
-      .then((user) => { 
-        firebase.firestore().collection('Customers').doc(email).set({ 
-          uid: user.user.uid,
+      .then((user) => {
+        firebase.firestore().collection('Customers').doc(email).set({
+          // uid: user.user.uid,
           email: email,
-          password: password,
+          // password: password,
           name: name,
           phone: phone,
           address: address
         });
-        
-        navigation.replace("AppDrawer",{
-          email:email
+
+        navigation.replace("AppDrawer", {
+          email: email
         })
       })
       .catch((error) => {
@@ -59,7 +58,7 @@ export default function CustomerSignup({ navigation }) {
 
     <View styles={styles.container}>
 
-      <ImageBackground source={require('../assets/food8.jpg')} style={{ width: '100%', height: '100%' }}>
+      <ImageBackground source={require('../assets/food6.jpg')} style={{ width: '100%', height: '100%' }}>
 
         <View style={styles.view1}>
           <Text style={styles.labal3}>
@@ -82,38 +81,16 @@ export default function CustomerSignup({ navigation }) {
           <TouchableOpacity style={{
             backgroundColor: 'olivedrab',
             borderRadius: 30,
-            height: 40,
-            width: 120,
+            height: 50,
+            width: 200,
             borderWidth: 1,
-            marginTop: 5,
-            marginLeft: 100,
+            marginTop: 20,
+            marginLeft: 75,
             color: 'white',
             textAlign: "center"
           }} onPress={() => register()} >
-            <Text style={{ color: 'white', fontSize: 25, textAlign: "center", justifyContent: "center" }}>
+            <Text style={{ color: 'white', fontSize: 20, textAlign: "center", paddingTop: 7 }}>
               SignUp
-            </Text>
-          </TouchableOpacity>
-        </View>
-
-        <View>
-          <Text style={styles.labal2}>
-            Login Instead
-          </Text>
-
-          <TouchableOpacity style={{
-            backgroundColor: 'olivedrab',
-            borderRadius: 30,
-            height: 40,
-            width: 120,
-            borderWidth: 1,
-            marginTop: 5,
-            marginLeft: 130,
-            color: 'white',
-            textAlign: "center"
-          }} onPress={log} >
-            <Text style={{ color: 'white', fontSize: 25, textAlign: "center", justifyContent: "center" }}>
-              Login
             </Text>
           </TouchableOpacity>
         </View>
@@ -155,7 +132,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: 'yellow',
     fontFamily: 'serif',
-    marginTop: -70,
 
   },
 

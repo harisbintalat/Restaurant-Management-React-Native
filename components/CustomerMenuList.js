@@ -26,23 +26,25 @@ export default function CustomerMenuList ({navigation , route}){
             alert(error);
           }
     }
+    async function getDataFromStorage() {
+      try {
+        let value = await AsyncStorage.getItem('menu');
+        if (value !== null) {
+          value = await JSON.parse(value);
+          setmenu(value);
+        }
+      } catch (error) {
+        alert(error);
+      }
+      setReload(false);
+    }
+    if (route.params?.reload || reload) {
+      getDataFromStorage();
+    }
 
-    React.useEffect(() => {
-        async function getDataFromStorage() {
-          try {
-            let value = await AsyncStorage.getItem('menu');
-            if (value !== null) {
-              value = await JSON.parse(value);
-              setmenu(value);
-            }
-          } catch (error) {
-            alert(error);
-          }
-          setReload(false);
-        }
-        if (route.params?.reload || reload) {
-          getDataFromStorage();
-        }
+    useEffect(() => {
+      getDataFromStorage()
+
       }, [route.params, reload]);
     
       const addcart = async (key,price,image,name,) => {
@@ -63,7 +65,7 @@ export default function CustomerMenuList ({navigation , route}){
                   },
                 ];
               await AsyncStorage.setItem('order', JSON.stringify(newArray));
-              alert("Item Added to cart");
+              // alert("Item Added to cart");
               navigation.navigate('CheckOut', { reFetch: true });
 
             } catch (error) {
@@ -90,7 +92,7 @@ export default function CustomerMenuList ({navigation , route}){
                    //price :menu.itemprice
                   //})
                 //}
-                style={{ width: '100%' }}>
+                style={{ width: '96%', marginLeft:4, marginBottom:4 }}>
                 <View style={styles.scrollviewlistItem}>
                 <Image
                 style={{ width: 100, height: 100, borderRadius: 20 }}
@@ -121,7 +123,7 @@ export default function CustomerMenuList ({navigation , route}){
       const emptyScrollView = (
         <View style={{ alignItems: 'center', paddingTop: 20 }}>
           <Text style={{ fontSize: 20, fontStyle: 'italic', color: 'grey' }}>
-            None of menu is in list!!
+            
           </Text>
         </View>
       );
@@ -131,7 +133,7 @@ export default function CustomerMenuList ({navigation , route}){
           <Text style={styles.title}>Menu </Text>
           {menu.length <= 0 ? emptyScrollView : scrollView}
 
-          <TouchableOpacity style={{ backgroundColor: 'olivedrab',
+          {/* <TouchableOpacity style={{ backgroundColor: 'olivedrab',
          borderRadius: 30,
          height:50,
          width:120,
@@ -145,7 +147,7 @@ export default function CustomerMenuList ({navigation , route}){
           <Text style={{color:'white' , fontSize:25 ,textAlign:"center" ,justifyContent:"center" }}>
                 View Item
           </Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
         </ImageBackground>
         </View>
         
@@ -158,7 +160,8 @@ export default function CustomerMenuList ({navigation , route}){
             color: 'black',
             textAlign: 'center',
             padding: 15,
-            color:"yellow"
+            color:"yellow",
+            marginTop:70
           },
 
         scrollviewlistItem: {

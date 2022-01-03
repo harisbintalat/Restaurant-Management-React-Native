@@ -52,7 +52,7 @@ return(
 
     <View styles={styles.container}>
   
-  <ImageBackground source={require('../assets/food8.jpg')} style={{width:'100%' , height:'100%' }}>
+  <ImageBackground source={require('../assets/food6.jpg')} style={{width:'100%' , height:'100%' }}>
 
   <View style={styles.view1}>
       <Text style={styles.labal3}>
@@ -69,42 +69,23 @@ return(
        <TextInput style={styles.input}   placeholder="Enter location"  onChangeText={text => handleChange(text, "location")} />
 
 
-      <TouchableOpacity style={{ backgroundColor: 'olivedrab',
-          borderRadius: 30,
-          height:50,
-          width:120,
-          borderWidth: 1,
-          marginTop:20,
-          marginLeft:100,
-          color:'white',
-          textAlign:"center"
-          }}  onPress={()=>register()}  >
-          <Text style={{color:'white' , fontSize:25 ,textAlign:"center" ,justifyContent:"center" }}>
-                Sign up
-          </Text>
-        </TouchableOpacity>
+       <TouchableOpacity style={{
+            backgroundColor: 'olivedrab',
+            borderRadius: 30,
+            height: 50,
+            width: 200,
+            borderWidth: 1,
+            marginTop: 40,
+            marginLeft: 75,
+            color: 'white',
+            textAlign: "center"
+          }} onPress={() => register()} >
+            <Text style={{ color: 'white', fontSize: 20, textAlign: "center", paddingTop: 7 }}>
+              SignUp
+            </Text>
+          </TouchableOpacity>
   </View>
 
-  <View>
-      <Text style={styles.labal2}>
-            Login Instead
-        </Text>
-
-      <TouchableOpacity style={{ backgroundColor: 'olivedrab',
-          borderRadius: 30,
-          height:50,
-          width:120,
-          borderWidth: 1,
-          marginTop:20,
-          marginLeft:130,
-          color:'white',
-          textAlign:"center"
-          }} onPress={log} >
-        <Text style={{color:'white' , fontSize:25 ,textAlign:"center" ,justifyContent:"center" }}>
-                Login
-          </Text>
-      </TouchableOpacity>
-  </View>
   
   </ImageBackground>
 
@@ -123,8 +104,8 @@ const styles = StyleSheet.create({
     
   },
   view1:{
-  marginTop:10,
-  marginLeft:30,
+  marginTop:15,
+  marginLeft:15,
   alignContent:"center",
   },
   
@@ -143,8 +124,9 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color:'yellow',
     fontFamily:'serif',
-    marginTop:60,
-
+    marginTop:90,
+    marginBottom:30,
+    marginLeft:-25
   },
   
   input: {
@@ -158,7 +140,7 @@ const styles = StyleSheet.create({
     
   },
    label1: {
-     marginTop:1,
+     marginTop:5,
     marginHorizontal: 20,
     marginVertical: 10,
     fontSize: 20,

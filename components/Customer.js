@@ -35,8 +35,8 @@ export default function Customer({ navigation }) {
 
     firebase.auth().signInWithEmailAndPassword(email, password)
       .then((userCredential) => {
-        navigation.replace("AppDrawer",{
-          email:email
+        navigation.replace("AppDrawer", {
+          email: email
         })
       })
       .catch((error) => {
@@ -47,7 +47,7 @@ export default function Customer({ navigation }) {
 
     <View styles={styles.container}>
 
-      <ImageBackground source={require('../assets/food8.jpg')} style={{ width: '100%', height: '100%' }}>
+      <ImageBackground source={require('../assets/food6.jpg')} style={{ width: '100%', height: '100%' }}>
 
         <View style={styles.view1}>
           <Text style={styles.labal3}>
@@ -61,37 +61,27 @@ export default function Customer({ navigation }) {
             backgroundColor: 'olivedrab',
             borderRadius: 30,
             height: 50,
-            width: 120,
+            width: 200,
             borderWidth: 1,
             marginTop: 20,
-            marginLeft: 100,
+            marginLeft: 75,
             color: 'white',
             textAlign: "center"
           }} >
-            <Text style={{ color: 'white', fontSize: 25, textAlign: "center", justifyContent: "center" }}>
+            <Text style={{ color: 'white', fontSize: 20, textAlign: "center", paddingTop: 7 }}>
               Login
             </Text>
           </TouchableOpacity>
         </View>
 
         <View>
-          <Text style={styles.labal2}>
-            Create Account
+          <Text style={{ fontSize: 29, marginTop: 30, fontWeight: 'bold', textAlign: 'center', color: 'red', fontFamily: 'serif' }}>
+            OR
           </Text>
+          <TouchableOpacity onPress={sign}>
 
-          <TouchableOpacity style={{
-            backgroundColor: 'olivedrab',
-            borderRadius: 30,
-            height: 50,
-            width: 120,
-            borderWidth: 1,
-            marginTop: 20,
-            marginLeft: 130,
-            color: 'white',
-            textAlign: "center"
-          }} onPress={sign}>
-            <Text style={{ color: 'white', fontSize: 25, textAlign: "center", justifyContent: "center" }}>
-              SignUp
+            <Text style={styles.labal2}>
+              Create an Account
             </Text>
           </TouchableOpacity>
         </View>
@@ -113,27 +103,27 @@ const styles = StyleSheet.create({
 
   },
   view1: {
-    marginTop: 110,
-    marginLeft: 30,
-    alignContent: "center",
+    marginTop: 100,
+    marginLeft: 30
   },
 
   labal2: {
     fontSize: 29,
-    marginTop: 70,
+    marginTop: 20,
     fontWeight: 'bold',
     textAlign: 'center',
-    color: 'yellow',
+    color: '#ADFF2F',
     fontFamily: 'serif'
 
   },
   labal3: {
-    fontSize: 39,
+    fontSize: 40,
     fontWeight: 'bold',
     textAlign: 'center',
     color: 'yellow',
     fontFamily: 'serif',
-    marginTop: -30,
+    marginBottom: 20,
+    marginLeft: -10
 
   },
 

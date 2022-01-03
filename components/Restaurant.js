@@ -44,7 +44,7 @@ export default function Restaurant({ navigation }) {
 
     <View styles={styles.container}>
 
-      <ImageBackground source={require('../assets/food8.jpg')} style={{ width: '100%', height: '100%' }}>
+      <ImageBackground source={require('../assets/food6.jpg')} style={{ width: '100%', height: '100%' }}>
 
         <View style={styles.view1}>
           <Text style={styles.labal3}>
@@ -54,41 +54,31 @@ export default function Restaurant({ navigation }) {
           <TextInput style={styles.input} placeholder="Enter email" onChangeText={text => handleChange(text, "email")} />
           <Text style={styles.label1}>Password </Text>
           <TextInput style={styles.input} placeholder="Enter password" secureTextEntry={true} onChangeText={text => handleChange(text, "password")}  />
-          <TouchableOpacity style={{
+          <TouchableOpacity  onPress={() => login()} style={{
             backgroundColor: 'olivedrab',
             borderRadius: 30,
             height: 50,
-            width: 120,
+            width: 200,
             borderWidth: 1,
             marginTop: 20,
-            marginLeft: 100,
+            marginLeft: 75,
             color: 'white',
             textAlign: "center"
-          }} onPress={() => login()} >
-            <Text style={{ color: 'white', fontSize: 25, textAlign: "center", justifyContent: "center" }}>
+          }} >
+            <Text style={{ color: 'white', fontSize: 20, textAlign: "center", paddingTop: 7 }}>
               Login
             </Text>
           </TouchableOpacity>
         </View>
 
         <View>
-          <Text style={styles.labal2}>
-            Become A Partner
+          <Text style={{ fontSize: 29, marginTop: 30, fontWeight: 'bold', textAlign: 'center', color: 'red', fontFamily: 'serif' }}>
+            OR
           </Text>
+          <TouchableOpacity onPress={sign}>
 
-          <TouchableOpacity style={{
-            backgroundColor: 'olivedrab',
-            borderRadius: 30,
-            height: 50,
-            width: 120,
-            borderWidth: 1,
-            marginTop: 20,
-            marginLeft: 130,
-            color: 'white',
-            textAlign: "center"
-          }} onPress={sign}>
-            <Text style={{ color: 'white', fontSize: 25, textAlign: "center", justifyContent: "center" }}>
-              SignUp
+            <Text style={styles.labal2}>
+              Create an Account
             </Text>
           </TouchableOpacity>
         </View>
@@ -117,10 +107,10 @@ const styles = StyleSheet.create({
 
   labal2: {
     fontSize: 29,
-    marginTop: 70,
+    marginTop: 20,
     fontWeight: 'bold',
     textAlign: 'center',
-    color: 'yellow',
+    color: '#ADFF2F',
     fontFamily: 'serif'
 
   },
@@ -130,7 +120,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: 'yellow',
     fontFamily: 'serif',
-    marginTop: -30,
+    marginLeft:-10
 
   },
 

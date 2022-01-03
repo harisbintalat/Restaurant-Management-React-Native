@@ -25,23 +25,25 @@ export default function MenuList ({navigation , route}){
             alert(error);
           }
     }
+    async function getDataFromStorage() {
+      try {
+        let value = await AsyncStorage.getItem('menu');
+        if (value !== null) {
+          value = await JSON.parse(value);
+          setmenu(value);
+        }
+      } catch (error) {
+        alert(error);
+      }
+      setReload(false);
+    }
+    if (route.params?.reload || reload) {
+      getDataFromStorage();
+    }
 
-    React.useEffect(() => {
-        async function getDataFromStorage() {
-          try {
-            let value = await AsyncStorage.getItem('menu');
-            if (value !== null) {
-              value = await JSON.parse(value);
-              setmenu(value);
-            }
-          } catch (error) {
-            alert(error);
-          }
-          setReload(false);
-        }
-        if (route.params?.reload || reload) {
-          getDataFromStorage();
-        }
+    useEffect(() => {
+      getDataFromStorage()
+
       }, [route.params, reload]);
     
       const deleteCar = async (key) => {
@@ -103,8 +105,8 @@ export default function MenuList ({navigation , route}){
       );
       const emptyScrollView = (
         <View style={{ alignItems: 'center', paddingTop: 20 }}>
-          <Text style={{ fontSize: 20, fontStyle: 'italic', color: 'grey' }}>
-            None of menu is in list!!
+          <Text style={{ fontSize: 35, fontStyle: 'italic', color: 'grey' }}>
+           Nothing in the Menu :(
           </Text>
         </View>
       );
@@ -114,7 +116,7 @@ export default function MenuList ({navigation , route}){
           <Text style={styles.title}>Menu Items</Text>
           {menu.length <= 0 ? emptyScrollView : scrollView}
 
-          <TouchableOpacity style={{ backgroundColor: 'olivedrab',
+          {/* <TouchableOpacity style={{ backgroundColor: 'olivedrab',
          borderRadius: 30,
          height:50,
          width:120,
@@ -128,7 +130,7 @@ export default function MenuList ({navigation , route}){
           <Text style={{color:'white' , fontSize:25 ,textAlign:"center" ,justifyContent:"center" }}>
                 View Item
           </Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
         </ImageBackground>
         </View>
         
@@ -141,7 +143,8 @@ export default function MenuList ({navigation , route}){
             color: 'black',
             textAlign: 'center',
             padding: 15,
-            color:"yellow"
+            color:"yellow",
+            marginTop:70
           },
 
         scrollviewlistItem: {

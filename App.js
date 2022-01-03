@@ -18,6 +18,7 @@ import CustomerMenuList from './components/CustomerMenuList'
 import CheckOut from './components/CheckOut'
 import MenuList from './components/MenuList';
 import AppDrawer from './screens/AppDrawer';
+import ProfileUpdate from './screens/profileUpdate'
 
 const Stack = createNativeStackNavigator();
 // or any pure javascript modules available in npm
@@ -68,7 +69,7 @@ export default function App() {
        <Stack.Screen name="ResultsShow" component={ResultsShowScreen} />
        <Stack.Screen name="MenuList" component={MenuList} />
        <Stack.Screen name='CheckOut' component={CheckOut} />
-       
+       <Stack.Screen name="ProfileUpdate" component={ProfileUpdate} />       
       </Stack.Navigator>
     </NavigationContainer>
   );

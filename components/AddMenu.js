@@ -68,9 +68,24 @@ const addCar = async () => {
 return(
 
   <View style={styles.container}>
-      <ImageBackground source={require('../assets/food8.jpg')} style={{ width: '100%', height: '100%' }}>
+      <ImageBackground source={require('../assets/food6.jpg')} style={{ width: '100%', height: '100%' }}>
+      <TouchableOpacity style={{ backgroundColor: 'blue',
+          borderRadius: 10,
+          height:50,
+          width:130,
+          borderWidth: 1,
+          marginTop:20,
+          marginLeft:240,
+          color:'white',
+          textAlign:"center",
+          justifyContent:"center"
+          }} onPress={clearAsyncStorage} >
+          <Text style={{color:'white' , fontSize:20 ,textAlign:"center" ,justifyContent:"center" }}>
+                View Items
+          </Text>
+        </TouchableOpacity>
      <Text style={styles.labal2}>
-            Add Items
+            Add menu items
      </Text>
      <Text style={styles.label1}>Item Name </Text>
      <TextInput style={styles.input}   placeholder="Enter name"  value={itemname} onChangeText={setitemname}/>
@@ -83,8 +98,8 @@ return(
           height:50,
           width:130,
           borderWidth: 1,
-          marginTop:20,
-          marginLeft:120,
+          marginTop:40,
+          marginLeft:130,
           color:'white',
           textAlign:"center",
           justifyContent:"center"
@@ -92,23 +107,8 @@ return(
             addCar();
             alert('You Added a new Item!!');
           }} >
-          <Text style={{color:'white' , fontSize:25 ,textAlign:"center" ,justifyContent:"center" }}>
+          <Text style={{color:'white' , fontSize:20 ,textAlign:"center" ,justifyContent:"center" }}>
                 Add Item
-          </Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={{ backgroundColor: 'olivedrab',
-          borderRadius: 30,
-          height:50,
-          width:130,
-          borderWidth: 1,
-          marginTop:20,
-          marginLeft:120,
-          color:'white',
-          textAlign:"center",
-          justifyContent:"center"
-          }} onPress={clearAsyncStorage} >
-          <Text style={{color:'white' , fontSize:25 ,textAlign:"center" ,justifyContent:"center" }}>
-                View Menu
           </Text>
         </TouchableOpacity>
         </ImageBackground>
@@ -135,11 +135,11 @@ const styles = StyleSheet.create({
   
    labal2: { 
     fontSize: 29, 
-    marginTop:50,
+    marginTop:70,
     fontWeight: 'bold',
     textAlign: 'center',
     color:'yellow',
-    fontFamily:'serif'
+    fontFamily:'serif',
 
   },
   logo: {

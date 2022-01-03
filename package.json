@@ -20,6 +20,7 @@
     "@react-navigation/drawer": "^6.1.8",
     "@react-navigation/native": "*",
     "@react-navigation/native-stack": "*",
+    "@types/jest": "^27.4.0",
     "axios": "^0.24.0",
     "expo": "~43.0.2",
     "expo-constants": "~12.1.3",
