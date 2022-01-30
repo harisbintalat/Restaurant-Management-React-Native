@@ -29,12 +29,12 @@ export default function App() {
   const[isLoggedIn,setIsLoggedIn] = useState(false);
 
   const firebaseConfig = {
-    apiKey: "AIzaSyCUK8xLNabk61yPwQHGt-Ip_3el1Lx2wA0",
-    authDomain: "madproject-38a38.firebaseapp.com",
-    projectId: "madproject-38a38",
-    storageBucket: "madproject-38a38.appspot.com",
-    messagingSenderId: "966674080756",
-    appId: "1:966674080756:web:2f6a3c1aebd48fca308fa1"
+
+
+    //Addn your firebase configuration here
+
+
+    
   };
   if(firebase.apps.length===0) {
     firebase.initializeApp(firebaseConfig);
@@ -51,7 +51,6 @@ export default function App() {
       setIsLoggedIn(false)
     }
   
-    // Do other things
   });
   
   return (

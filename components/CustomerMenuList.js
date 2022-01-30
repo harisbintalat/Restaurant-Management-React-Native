@@ -85,13 +85,6 @@ export default function CustomerMenuList ({navigation , route}){
               <TouchableOpacity
                 key={i}
                 activeOpacity={0.7}
-                //onPress={() =>
-                  //navigation.navigate('dish Details', {
-                   //image: menu.image,
-                   //name:menu.itemname,
-                   //price :menu.itemprice
-                  //})
-                //}
                 style={{ width: '96%', marginLeft:4, marginBottom:4 }}>
                 <View style={styles.scrollviewlistItem}>
                 <Image
@@ -133,21 +126,6 @@ export default function CustomerMenuList ({navigation , route}){
           <Text style={styles.title}>Menu </Text>
           {menu.length <= 0 ? emptyScrollView : scrollView}
 
-          {/* <TouchableOpacity style={{ backgroundColor: 'olivedrab',
-         borderRadius: 30,
-         height:50,
-         width:120,
-         borderWidth: 1,
-         marginTop:20,
-         marginLeft:120,
-         color:'white',
-         textAlign:"center",
-         justifyContent:"center"
-          }} onPress={show} >
-          <Text style={{color:'white' , fontSize:25 ,textAlign:"center" ,justifyContent:"center" }}>
-                View Item
-          </Text>
-        </TouchableOpacity> */}
         </ImageBackground>
         </View>
         

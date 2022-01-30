@@ -54,15 +54,16 @@ const Profile = ({ route, navigation }) => {
 
     return (
         <View style={{ backgroundColor: "#F8F8FF" }}>
+             <ImageBackground source={require('../assets/food6.jpg')} style={{height:'100%' , width:'100%'  }}>
             <View style={styles.container}>
                 <View style={{ flexDirection: 'row' }}>
                     <Text style={styles.header}>Profile Details</Text>
                     <TouchableOpacity 
-                    style={{ marginLeft: 150, marginTop: 40, flexDirection: 'row' }}
+                    style={{ marginLeft: 120, marginTop: 90, flexDirection: 'row' }}
                     onPress={()=>navigation.navigate("ProfileUpdate",{Uemail:email})}
                     >
-                        <FontAwesome name="pencil" size={20} color="black" />
-                        <Text style={{ fontWeight: "bold", marginLeft: 4 }}>EDIT</Text>
+                        <FontAwesome name="pencil" size={20} color="white" />
+                        <Text style={{ fontWeight: "bold", marginLeft: 4, color:'white' }}>EDIT</Text>
                     </TouchableOpacity>
                 </View>
 
@@ -76,41 +77,43 @@ const Profile = ({ route, navigation }) => {
                         marginLeft: 120,
                         marginBottom: 20,
                         color: 'white',
-                        textAlign: "center"
+                        textAlign: "center",
+                        
                     }} onPress={pickImage} >
-                        <Image style={styles.logo} source={require('../assets/usericon.png')} />
+                        <Image style={styles.logo} source={require('../assets/user.png')} />
                     </TouchableOpacity>
                     <View style={styles.data}>
-                        <FontAwesome name="user" size={20} color="black" />
+                        <FontAwesome name="user" size={20} color="white" />
                         <Text style={styles.left}>Name</Text>
                         <TouchableOpacity><Text style={styles.right}>{sName}</Text></TouchableOpacity>
                     </View>
                     <View style={styles.data}>
-                        <FontAwesome name="envelope" size={20} color="black" />
+                        <FontAwesome name="envelope" size={20} color="white" />
                         <Text style={styles.left}>Email</Text>
                         <Text style={styles.right}>{sEmail}</Text>
                     </View>
                     <View style={styles.data}>
-                        <FontAwesome name="phone" size={20} color="black" />
+                        <FontAwesome name="phone" size={20} color="white" />
                         <Text style={styles.left}>Phone</Text>
                         <Text style={styles.right}>{sPhone}</Text>
                     </View>
                     <View style={styles.data}>
-                        <FontAwesome name="map-marker" size={20} color="black" />
+                        <FontAwesome name="map-marker" size={20} color="white" />
                         <Text style={styles.left}>Address</Text>
-                        <Text style={styles.right}>{sAddress}</Text>
+                        <Text style={{marginLeft:90,color:'white',fontSize:18}}>{sAddress}</Text>
                     </View>
                 </View>
                 <Text style={styles.headerBottom}>General</Text>
                 <View style={styles.data}>
-                    <FontAwesome name="star" size={20} color="black" />
+                    <FontAwesome name="star" size={20} color="white" />
                     <TouchableOpacity><Text style={styles.left}>Rate this app</Text></TouchableOpacity>
                 </View>
-                <View style={{ marginLeft: 100, marginTop: 100 }}>
-                    <TouchableOpacity><Text style={{ fontWeight: "bold" }}>Terms and conditions</Text></TouchableOpacity>
-                    <Text style={{ marginLeft: 30 }}>Version 1.0.0</Text>
+                <View style={{ marginLeft: 100, marginTop: 10 }}>
+                    <TouchableOpacity><Text style={{ fontWeight: "bold", color:'white' }}>Terms and conditions</Text></TouchableOpacity>
+                    <Text style={{ marginLeft: 30,color:'white' }}>Version 1.0.0</Text>
                 </View>
             </View>
+            </ImageBackground>
         </View>
     );
 }
@@ -125,29 +128,36 @@ const styles = StyleSheet.create({
         flexDirection: "row"
     },
     header: {
-        fontSize: 20,
+        fontSize: 25,
         fontWeight: "bold",
         marginBottom: 20,
-        marginTop: 20
+        marginTop: 80,
+        color:'yellow'
     },
     headerBottom: {
         fontSize: 20,
         fontWeight: "bold",
         marginBottom: 20,
-        marginTop: 40
+        marginTop: 5,
+        color:'white'
 
     },
     left: {
         marginLeft: 20,
         fontWeight: "bold",
-        fontSize: 15
+        fontSize: 15,
+        color:'white',
+        fontSize:20
     },
     right: {
-        marginLeft: 100
+        marginLeft: 100,
+        color:'white',
+        fontSize:18
     },
     logo: {
         height: 90,
         width: 90,
+        borderRadius:50
 
     },
 

@@ -11,6 +11,7 @@ export default function CheckOut ({navigation , route}){
     const [reload, setReload] = useState(false);
     const [cars, setCars] = useState([]);
     const [order, setorder] = useState([]);
+    const [price,setprice] = useState();
     async function show(){
         try {
             var value = await AsyncStorage.getItem('order');
@@ -32,6 +33,14 @@ export default function CheckOut ({navigation , route}){
         if (value !== null) {
           value = await JSON.parse(value);
           setorder(value);
+          //total price
+          const arr = order.filter((item)=>item.itemprice);
+          arr.map((item)=>{
+            setprice(item.itemprice);
+
+          })
+
+          
         }
       } catch (error) {
         alert(error);
@@ -83,7 +92,7 @@ export default function CheckOut ({navigation , route}){
 
                   <Text
                     style={styles.cardText}>
-                        Item 
+                  
                     {car.name}
                    
                   </Text>

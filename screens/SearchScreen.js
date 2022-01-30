@@ -31,13 +31,18 @@ function SearchScreen({ navigation, route }) {
         />
         {errorMessage ? <Text>{errorMessage}</Text> : null}
         <ScrollView>
+        <ResultsList results={filterResultsByPrice("$$")} navigation={navigation} title="Best Market" />
         <ResultsList
             results={filterResultsByPrice("$")}
             navigation={navigation}
             title="Most Popular"
           />
-          <ResultsList results={filterResultsByPrice("$$")} navigation={navigation} title="Best Market" />
           <ResultsList results={filterResultsByPrice("$$")} navigation={navigation} title="Highly Rated" />
+          <ResultsList
+            results={filterResultsByPrice("$")}
+            navigation={navigation}
+            title="Best choice"
+          />
         </ScrollView>
       </ImageBackground>
     </View>

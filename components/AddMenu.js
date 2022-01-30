@@ -13,9 +13,9 @@ import MenuList from './MenuList';
 export default function AddMenu({ navigation }) {
   // const { userid} = route.params.userid;
   // console.log(userid)
-  const [image, setImage] = useState(null);
-   const [itemname , setitemname] = useState(null);
-   const [itemprice , setitemprice] = useState(null);
+  const [image, setImage] = useState("");
+   const [itemname , setitemname] = useState("");
+   const [itemprice , setitemprice] = useState("");
    const [cars, setCars] = useState([]);
    const [menu,setmenu] = useState([]);
 
@@ -69,7 +69,7 @@ return(
 
   <View style={styles.container}>
       <ImageBackground source={require('../assets/food6.jpg')} style={{ width: '100%', height: '100%' }}>
-      <TouchableOpacity style={{ backgroundColor: 'blue',
+      <TouchableOpacity style={{ backgroundColor: 'olivedrab',
           borderRadius: 10,
           height:50,
           width:130,
@@ -93,7 +93,8 @@ return(
      <TextInput style={styles.input}   placeholder="Enter Price"  keyboardType="numeric" value={itemprice} onChangeText={setitemprice} />
      <Text style={styles.label1}>Item Picture URL </Text>
      <TextInput style={styles.input}   placeholder="Type Photo URL"  value={image} onChangeText={setImage} />
-       <TouchableOpacity style={{ backgroundColor: 'olivedrab',
+       <TouchableOpacity style={{backgroundColor: image && itemname
+        && itemprice ? 'olivedrab' : 'gray',
           borderRadius: 30,
           height:50,
           width:130,
@@ -106,7 +107,11 @@ return(
           }}onPress={()=>{
             addCar();
             alert('You Added a new Item!!');
-          }} >
+          }}disabled={
+            image && itemname
+        && itemprice?false:true
+
+          }  >
           <Text style={{color:'white' , fontSize:20 ,textAlign:"center" ,justifyContent:"center" }}>
                 Add Item
           </Text>

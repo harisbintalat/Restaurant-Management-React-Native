@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     marginLeft: 15,
     marginBottom: 5,
-    color:'white'
+    color:'yellow'
   },
   ItemsStyle:{
     color:'white'
